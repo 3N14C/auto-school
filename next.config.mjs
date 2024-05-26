@@ -4,6 +4,10 @@ const nextConfig = {
         remotePatterns: [{
             hostname: '**'
         }]
+    },
+
+    experimental: {
+        missingSuspenseWithCSRBailout: true
     }
 };
 

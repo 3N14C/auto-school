@@ -4,18 +4,11 @@ import { Button } from "@/components/ui/button/button";
 import { Typography } from "@/components/ui/typography/typography";
 import { Play } from "lucide-react";
 import Image from "next/image";
-import { FC, useState } from "react";
-import { ModalReservation } from "./modal/modal-reservation";
-import { useClientSession } from "@/hooks/useClientSession";
-import { useQuery } from "@tanstack/react-query";
-import { getCurrentUser } from "@/actions/user/get-current-user";
+import { FC } from "react";
 
 export const MainSection: FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
-
   return (
     <div className="">
-      <ModalReservation open={open} setOpen={setOpen} />
       <Typography
         variant="text-72"
         className="text-[--primary-black] lg:max-w-[800px]"
@@ -55,7 +48,7 @@ export const MainSection: FC = () => {
           </Typography>
 
           <div className="flex items-center lg:gap-20 gap-5 lg:mt-20">
-            <Button onClick={() => setOpen(true)}>
+            <Button>
               <Typography variant="text-18" className="text-white font-bold">
                 Записаться
               </Typography>
