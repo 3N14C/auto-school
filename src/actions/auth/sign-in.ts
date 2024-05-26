@@ -16,9 +16,7 @@ export const signIn = async (data: z.infer<typeof signInSchema>) => {
   });
 
   if (!existingUser) {
-    return {
-      error: "Пользователь не существует",
-    };
+    throw new Error("Неверные данные");
   }
 
   const session = await lucia.createSession(existingUser.id, {});
