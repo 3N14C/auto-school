@@ -1,0 +1,37 @@
+.text-16 {
+  font-size: 16px;
+}
+
+.text-18 {
+  font-size: 18px;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+
+.text-24 {
+  font-size: 24px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    max-width: 350px;
+  }
+}
+
+.text-32 {
+  font-size: 32px;
+}
+
+.text-54 {
+  font-size: 54px;
+}
+
+.text-72 {
+  font-size: 72px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+    max-width: 350px;
+  }
+}

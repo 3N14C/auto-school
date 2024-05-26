@@ -1,8 +1,10 @@
+import { cn } from "@/lib/utils";
+import { Providers } from "@/providers/providers";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Carlito } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const carlito = Carlito({ subsets: ["cyrillic"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn("bg-[--primary-light-gray]", carlito.className)}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

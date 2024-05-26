@@ -1,0 +1,26 @@
+.solid {
+  background-color: var(--primary-red);
+  border-radius: 20px;
+  padding: 16px 40px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--primary-red-hover);
+  }
+}
+
+.border {
+  border: 2px solid var(--primary-red);
+  border-radius: 30px;
+  padding: 16px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+}
