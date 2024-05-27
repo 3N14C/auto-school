@@ -41,7 +41,11 @@ export const FormSignIn: FC = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-    await mutateAsync(data);
+    try {
+      await mutateAsync(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
