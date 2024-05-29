@@ -22,13 +22,13 @@ export const PhoneNumber: FC = () => {
         </Typography>
       </Button>
 
-      {isLoading && <Loader2 className="animate-spin" />}
+      {/* {isLoading && <Loader2 className="animate-spin" />}
 
       {user && (
         <Link href={`/profile/${user.id}`}>
           <User />
         </Link>
-      )}
+      )} */}
     </div>
   );
 };

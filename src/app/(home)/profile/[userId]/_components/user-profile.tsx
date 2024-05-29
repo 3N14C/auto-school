@@ -33,7 +33,7 @@ export const UserProfile: FC = () => {
   };
 
   return (
-    <div className="flex items-center gap-10">
+    <div className="flex lg:flex-row flex-col items-center gap-10">
       <div className="flex flex-col gap-4">
         <Image
           src={
@@ -42,7 +42,7 @@ export const UserProfile: FC = () => {
           alt="profile"
           width={1000}
           height={1000}
-          className="rounded-sm w-80 h-80"
+          className="rounded-sm w-80 h-80 -z-30"
         />
 
         <Button

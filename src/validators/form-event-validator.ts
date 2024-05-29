@@ -1,9 +1,8 @@
 import { z } from "zod";
 import validator from "validator";
 
-const dateRegex = /^\d{2}\.\d{2}\.\d{2}$/;
-
 export const schema = z.object({
+  email: z.string().email("Неверная почта"),
   name: z
     .string()
     .min(1, "Поле обязательно для заполнения")
@@ -14,7 +13,4 @@ export const schema = z.object({
       validator.isMobilePhone,
       "Неверный номер телефона или номер должен начинаться с +7"
     ),
-  // date: z.preprocess((arg) => {
-  //   if (typeof arg === "string" || arg instanceof Date) return new Date(arg);
-  // }, z.date()),
 });

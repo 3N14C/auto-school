@@ -1,11 +1,10 @@
 "use server";
 
-import { axiosInstance } from "@/configs/axois-config";
-import { signInSchema } from "@/validators/form-signin-validator";
-import { z } from "zod";
-import { cookies } from "next/headers";
 import { lucia } from "@/auth";
 import prisma from "@/lib/prisma";
+import { signInSchema } from "@/validators/form-signin-validator";
+import { cookies } from "next/headers";
+import { z } from "zod";
 
 export const signIn = async (data: z.infer<typeof signInSchema>) => {
   const existingUser = await prisma.user.findUnique({

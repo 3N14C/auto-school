@@ -1,8 +1,7 @@
-import { schemaWithoutPassword } from "@/app/(home)/_components/modal/modal-reservation";
-import { z } from "zod";
 
-export type SchemaReservation = z.infer<typeof schemaWithoutPassword> & {
+export type SchemaReservation = {
   userId: string;
   categoryId: string;
-  dateTime: Date;
+  reservationDate: Date;
+  reservationTime: string;
 };

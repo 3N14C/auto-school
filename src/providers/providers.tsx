@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const Providers: FC<IProps> = ({ children }) => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({});
 
   return (
     <QueryClientProvider client={queryClient}>

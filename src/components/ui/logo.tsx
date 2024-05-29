@@ -3,9 +3,13 @@ import { FC } from "react";
 import { Typography } from "./typography/typography";
 import { Link } from "next-view-transitions";
 
-export const Logo: FC = () => {
+interface IProps {
+  href?: string;
+}
+
+export const Logo: FC<IProps> = ({ href = "/" }) => {
   return (
-    <Link href={"/"} className="flex items-center gap-2">
+    <Link href={href} className="flex items-center gap-2 max-w-fit">
       <Image src={"/svg/car-logo.svg"} alt="logo" width={70} height={70} />
 
       <div className="">

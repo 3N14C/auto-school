@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
+import { Role } from "@prisma/client";
 import { Lucia } from "lucia";
 import { cookies } from "next/headers";
 import { cache } from "react";
@@ -18,6 +19,7 @@ export const lucia = new Lucia(adapter, {
       name: databaseUserAttributes.name,
       phone: databaseUserAttributes.phone,
       password: databaseUserAttributes.password,
+      role: databaseUserAttributes.role,
     };
   },
 });
@@ -68,4 +70,5 @@ interface DatabaseUserAttributes {
   name: string;
   phone: string;
   password: string;
+  role: Role;
 }

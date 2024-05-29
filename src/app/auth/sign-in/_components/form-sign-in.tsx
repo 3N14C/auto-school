@@ -1,9 +1,11 @@
 "use client";
 
 import { signIn } from "@/actions/auth/sign-in";
+import { getCurrentSession } from "@/actions/user/get-current-user";
 import { Button } from "@/components/ui/button/button";
 import { InputValidated } from "@/components/ui/input/validated-input";
 import { Typography } from "@/components/ui/typography/typography";
+import { useCurrentSession } from "@/hooks/use-current-session";
 import { signInSchema } from "@/validators/form-signin-validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -21,10 +23,13 @@ export const FormSignIn: FC = () => {
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: signIn,
-    onSuccess: () => {
+    onSuccess: async () => {
+      const { user } = await getCurrentSession();
       queryClient.invalidateQueries({ queryKey: ["current-session"] });
       toast.success("Вы успешно вошли в аккаунт");
-      router.replace("/");
+      user?.role === "ADMIN"
+        ? router.push("/admin/admin-panel/applications")
+        : router.push("/");
     },
 
     onError: () => {

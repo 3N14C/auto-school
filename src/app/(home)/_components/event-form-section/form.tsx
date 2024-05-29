@@ -38,6 +38,7 @@ export const FormEvent: FC = () => {
     await mutateAsync({
       name: data.name,
       phoneNumber: data.phoneNumber,
+      email: data.email,
     });
   };
 
@@ -46,6 +47,12 @@ export const FormEvent: FC = () => {
       onSubmit={handleSubmit(handleOnSubmit)}
       className="flex flex-col gap-10"
     >
+      <InputValidated
+        {...register("email")}
+        placeholder="Введите вашу почту"
+        errors={errors.email}
+      />
+
       <InputValidated
         {...register("name")}
         placeholder="Введите ваше имя"

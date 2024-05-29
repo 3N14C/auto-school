@@ -25,9 +25,9 @@ export default function Home() {
         <AutoparkSection />
       </div>
 
-      <div className="mt-20">
+      {/* <div className="mt-20">
         <PriceSection />
-      </div>
+      </div> */}
 
       <div className="mt-20">
         <EventFormSection />

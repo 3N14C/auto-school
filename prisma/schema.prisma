@@ -23,46 +23,57 @@ model Session {
   userId String
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
   id String @id @default(cuid())
 
+  email    String @unique
   name     String
-  password String
   phone    String @unique
+  password String
+  role     Role   @default(USER)
 
-  sessions    Session[]
-  reservation Reservation?
+  sessions      Session[]
+  application   Application? @relation(fields: [applicationId], references: [id])
+  applicationId String?
 }
 
-model Category {
-  id String @id @default(cuid())
-
-  name         String
-  description  String
-  practice     String
-  theory       String
-  practiceExam String
-  exam         String
-
-  price       Int
-  reservation Reservation[]
-}
-
-model Reservation {
-  id String @id @default(cuid())
-
-  reservationDate DateTime
-
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @unique
+enum ApplicationStatus {
+  PENDING
+  APPROVED
 }
 
 model Application {
   id String @id @default(cuid())
 
-  name  String
-  phone String @unique
+  email             String            @unique
+  name              String
+  phone             String            @unique
+  applicationStatus ApplicationStatus @default(PENDING)
+  user              User[]
+}
+
+model Car {
+  id String @id @default(cuid())
+
+  brand String
+  model String @unique
+
+  img        String?
+  instructor Instructor?
+}
+
+model Instructor {
+  id String @id @default(cuid())
+
+  firstName String
+  lastName  String
+  img       String?
+
+  car   Car    @relation(fields: [carId], references: [id])
+  carId String @unique
 }

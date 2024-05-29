@@ -10,6 +10,7 @@ export const POST = async (req: NextRequest) => {
     data: {
       name: data.name,
       phone: data.phoneNumber,
+      email: data.email,
     },
   });
 
