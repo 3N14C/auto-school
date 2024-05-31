@@ -31,15 +31,21 @@ enum Role {
 model User {
   id String @id @default(cuid())
 
-  email    String @unique
-  name     String
-  phone    String @unique
-  password String
-  role     Role   @default(USER)
+  email      String @unique
+  name       String
+  phone      String @unique
+  password   String
+  driveHours Int    @default(0)
+  role       Role   @default(USER)
 
-  sessions      Session[]
+  sessions Session[]
+
+  instructor    Instructor?  @relation(fields: [instructorId], references: [id])
+  instructorId  String?
   application   Application? @relation(fields: [applicationId], references: [id])
   applicationId String?
+  reservation   Reservation? @relation(fields: [reservationId], references: [id])
+  reservationId String?
 }
 
 enum ApplicationStatus {
@@ -74,6 +80,48 @@ model Instructor {
   lastName  String
   img       String?
 
-  car   Car    @relation(fields: [carId], references: [id])
-  carId String @unique
+  car         Car           @relation(fields: [carId], references: [id])
+  carId       String        @unique
+  user        User[]
+  reservation Reservation[]
+}
+
+enum LessonPlace {
+  AUTODROME
+  CITY
+}
+
+enum LessonStatus {
+  PENDING
+  COMPLETED
+}
+
+model Lesson {
+  id String @id @default(cuid())
+
+  date   DateTime
+  time   String
+  place  LessonPlace  @default(AUTODROME)
+  status LessonStatus @default(PENDING)
+
+  reservation   Reservation? @relation(fields: [reservationId], references: [id])
+  reservationId String?
+}
+
+model Reservation {
+  id String @id @default(cuid())
+
+  lessons      Lesson[]
+  instructor   Instructor @relation(fields: [instructorId], references: [id])
+  instructorId String
+  category     Category   @relation(fields: [categoryId], references: [id])
+  categoryId   String
+  user         User[]
+}
+
+model Category {
+  id String @id @default(cuid())
+
+  name        String
+  reservation Reservation[]
 }

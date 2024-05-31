@@ -94,19 +94,6 @@ export const FormSignIn: FC = () => {
             "Войти"
           )}
         </Button>
-
-        <div className="flex items-center justify-center gap-3">
-          <Typography variant="text-16" className="font-bold">
-            Нет аккаунта?{" "}
-          </Typography>
-
-          <Link
-            href={"/auth/sign-up"}
-            className="text-[--primary-red] text-base font-semibold"
-          >
-            Создать аккаунт
-          </Link>
-        </div>
       </div>
     </form>
   );

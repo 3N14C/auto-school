@@ -26,9 +26,8 @@ interface IProps {
 
 export const CarModal: FC<IProps> = ({ open, setOpen, carId }) => {
   const { data: car } = useQuery({
-    queryKey: ["car-by-id"],
+    queryKey: ["car-by-id", carId],
     queryFn: async () => await getCarById({ id: carId }),
-    refetchInterval: 500,
   });
 
   const { mutateAsync, isPending } = useMutation({

@@ -7,7 +7,7 @@ import { AdminNavbar } from "./admin-navbar";
 export const AdminHeader: FC = () => {
   return (
     <div className="flex items-center justify-between">
-      <Logo href="/admin/admin-panel/applications" />
+      <Logo href="/" />
 
       <AdminNavbar />
     </div>

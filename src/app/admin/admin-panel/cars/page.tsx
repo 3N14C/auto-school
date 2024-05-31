@@ -9,13 +9,13 @@ const Page: NextPage<Props> = ({}) => {
   return (
     <div>
       <div className="">
-        <Title title="Список автомобилей" />
-        <CarsList />
+        <Title title="Добавить автомобиль" />
+        <FormAddCar />
       </div>
 
       <div className="mt-20">
-        <Title title="Добавить автомобиль" />
-        <FormAddCar />
+        <Title title="Список автомобилей" />
+        <CarsList />
       </div>
     </div>
   );

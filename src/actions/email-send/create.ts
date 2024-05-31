@@ -6,7 +6,7 @@ export const sendToEmail = async (data: {
   password: string;
   phone: string;
 }) => {
-  const response = await axiosInstance.post("/send", JSON.stringify(data));
+  const response = await axiosInstance.post("/send", data);
 
   return response.data;
 };

@@ -5,6 +5,7 @@ import { FC } from "react";
 import { Typography } from "../typography/typography";
 import { useCurrentSession } from "@/hooks/use-current-session";
 import { Link } from "next-view-transitions";
+import { Loader2 } from "lucide-react";
 
 export const Navbar: FC = () => {
   const { user, isLoading } = useCurrentSession();
@@ -28,17 +29,10 @@ export const Navbar: FC = () => {
         </div>
       ))}
 
-      <Link href={linkToProfile}>
-        <Typography
-          variant="text-18"
-          className="text-[--primary-black] first-letter:uppercase font-bold"
-        >
-          Личный кабинет
-        </Typography>
-      </Link>
-
-      {/* {user ? (
-        <Link href={`/profile/${user.id}`}>
+      {isLoading ? (
+        <Loader2 className="animate-spin" />
+      ) : (
+        <Link href={linkToProfile}>
           <Typography
             variant="text-18"
             className="text-[--primary-black] first-letter:uppercase font-bold"
@@ -46,16 +40,7 @@ export const Navbar: FC = () => {
             Личный кабинет
           </Typography>
         </Link>
-      ) : (
-        <Link href={"/auth/sign-in"}>
-          <Typography
-            variant="text-18"
-            className="text-[--primary-black] first-letter:uppercase font-bold"
-          >
-            Войти
-          </Typography>
-        </Link>
-      )} */}
+      )}
     </div>
   );
 };

@@ -9,7 +9,7 @@ export const EventFormSection: FC = () => {
         variant="text-54"
         className="font-bold text-[--primary-black]"
       >
-        Есть вопросы? Оставьте заявку, мы свяжимся с вами.
+        Оставьте заявку, мы свяжимся с вами.
       </Typography>
 
       <div className="mt-20">
