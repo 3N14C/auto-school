@@ -3,6 +3,8 @@ import { formUpdateInstructor } from "@/validators/form-update-instructor";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 export const PATCH = async (req: NextRequest) => {
   const data: z.infer<typeof formUpdateInstructor> = await req.json();
   const { searchParams } = req.nextUrl;

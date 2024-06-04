@@ -2,6 +2,8 @@ import prisma from "@/lib/prisma";
 import { ApplicationStatus } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export const PATCH = async (req: NextRequest) => {
   const data: { password: string } = await req.json();
   const { searchParams } = req.nextUrl;
