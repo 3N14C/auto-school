@@ -29,6 +29,7 @@ export const FormCarModal: FC<IProps> = ({ car }) => {
     values: {
       brand: car.brand,
       model: car.model,
+      img: car.img ?? ''
     },
   });
 
@@ -66,6 +67,12 @@ export const FormCarModal: FC<IProps> = ({ car }) => {
       <InputValidated
         placeholder="Модель"
         {...register("model")}
+        errors={errors.model}
+      />
+
+      <InputValidated
+        placeholder="https://image.png"
+        {...register("img")}
         errors={errors.model}
       />
 

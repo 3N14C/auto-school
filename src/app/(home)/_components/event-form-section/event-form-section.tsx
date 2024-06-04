@@ -4,7 +4,7 @@ import { FormEvent } from "./form";
 
 export const EventFormSection: FC = () => {
   return (
-    <div className="">
+    <div id="contacts" className="">
       <Typography
         variant="text-54"
         className="font-bold text-[--primary-black]"

@@ -5,7 +5,7 @@ import { FC } from "react";
 
 export const ServiceSection: FC = () => {
   return (
-    <div className="">
+    <div id="about-school" className="">
       <Typography
         variant="text-32"
         className="text-[--primary-black] text-center font-bold"

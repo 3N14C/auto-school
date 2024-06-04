@@ -20,12 +20,14 @@ export const Navbar: FC = () => {
     <div className="flex lg:flex-row flex-col items-center gap-10">
       {navbar.map((item) => (
         <div key={item.id} className="">
-          <Typography
-            variant="text-18"
-            className="text-[--primary-black] first-letter:uppercase font-bold"
-          >
-            {item.title}
-          </Typography>
+          <Link href={item.id}>
+            <Typography
+              variant="text-18"
+              className="text-[--primary-black] first-letter:uppercase font-bold"
+            >
+              {item.title}
+            </Typography>
+          </Link>
         </div>
       ))}
 

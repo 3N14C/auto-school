@@ -4,7 +4,7 @@ import { FieldError } from "react-hook-form";
 
 interface InputValidatedProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  errors: FieldError | undefined;
+  errors?: FieldError | undefined;
   className?: string;
   placeholder?: string;
 }

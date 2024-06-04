@@ -9,8 +9,4 @@ export const schema = z.object({
     .regex(/^[а-яА-Я]+$/, "Неверное имя"),
   phoneNumber: z
     .string()
-    .refine(
-      validator.isMobilePhone,
-      "Неверный номер телефона или номер должен начинаться с +7"
-    ),
 });

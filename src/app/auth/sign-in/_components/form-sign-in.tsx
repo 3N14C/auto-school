@@ -5,19 +5,23 @@ import { getCurrentSession } from "@/actions/user/get-current-user";
 import { Button } from "@/components/ui/button/button";
 import { InputValidated } from "@/components/ui/input/validated-input";
 import { Typography } from "@/components/ui/typography/typography";
-import { useCurrentSession } from "@/hooks/use-current-session";
 import { signInSchema } from "@/validators/form-signin-validator";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMask } from "@react-input/mask";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
 export const FormSignIn: FC = () => {
+  const inputRef = useMask({
+    mask: "+7 (___) ___-__-__",
+    replacement: { _: /\d/ },
+    showMask: true,
+  });
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -39,6 +43,7 @@ export const FormSignIn: FC = () => {
 
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<z.infer<typeof signInSchema>>({
@@ -70,11 +75,17 @@ export const FormSignIn: FC = () => {
           </Typography>
         </Typography>
 
-        <InputValidated
-          placeholder="+7 (___) ___-__-__"
-          {...register("phone")}
-          errors={errors.phone}
-          className=""
+        <Controller
+          control={control}
+          name="phone"
+          render={({ field }) => (
+            <InputValidated
+              {...field}
+              placeholder="Номер телефона"
+              ref={inputRef}
+              errors={errors.phone}
+            />
+          )}
         />
 
         <InputValidated

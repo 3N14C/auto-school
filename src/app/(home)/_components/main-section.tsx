@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button/button";
 import { Typography } from "@/components/ui/typography/typography";
 import { Play } from "lucide-react";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { FC } from "react";
 
@@ -48,11 +49,13 @@ export const MainSection: FC = () => {
           </Typography>
 
           <div className="flex items-center lg:gap-20 gap-5 lg:mt-20">
-            <Button>
-              <Typography variant="text-18" className="text-white font-bold">
-                Записаться
-              </Typography>
-            </Button>
+            <Link href={'#contacts'}>
+              <Button>
+                <Typography variant="text-18" className="text-white font-bold">
+                  Записаться
+                </Typography>
+              </Button>
+            </Link>
 
             <Button variant="icon">
               <div className="border rounded-full border-[--primary-black] w-fit lg:p-4 p-2">

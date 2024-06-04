@@ -5,7 +5,7 @@ import { FaqCard } from "./faq-card";
 
 export const FaqSection: FC = () => {
   return (
-    <div className="">
+    <div id="faq" className="">
       <Title title="Вы часто нас спрашиваете" className="text-center" />
 
       <div className="grid lg:grid-cols-2 items-start gap-5 mt-10">

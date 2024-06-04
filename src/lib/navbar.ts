@@ -6,32 +6,26 @@ interface INavbar {
 
 export const navbar: INavbar[] = [
   {
-    id: "1",
+    id: "#about-school",
     title: "об автошколе",
     href: "/",
   },
 
   {
-    id: "2",
-    title: "инструкторы",
-    href: "/instructors",
-  },
-
-  {
-    id: "3",
+    id: "#price",
     title: "стоимость обучения",
     href: "/price",
   },
 
   {
-    id: "4",
+    id: "#faq",
     title: "частые вопросы",
     href: "/faq",
   },
 
   {
-    id: "5",
-    title: "контакты",
+    id: "#contacts",
+    title: "связь с нами",
     href: "/contacts",
   },
 ];

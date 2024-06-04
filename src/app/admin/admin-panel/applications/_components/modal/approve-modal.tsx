@@ -2,6 +2,7 @@
 
 import { ApplicationService } from "@/actions/application/application-service";
 import { Button } from "@/components/ui/button/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +18,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { FC, useState } from "react";
 import { toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface IProps {
   open: boolean;
@@ -27,7 +37,7 @@ interface IProps {
 export const ApproveModal: FC<IProps> = ({ ticketId, open, setOpen }) => {
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const [instructorId, setInstructorId] = useState<string | null>(null);
-  const [date, setDate] = useState<Date | null>(null);
+  const [date, setDate] = useState<Date | undefined>(new Date());
   const [time, setTime] = useState<string | null>(null);
 
   const { generatePassword } = useGeneratePassword();
@@ -82,44 +92,58 @@ export const ApproveModal: FC<IProps> = ({ ticketId, open, setOpen }) => {
         </DialogHeader>
 
         <div className="">
-          <div className="">
-            <input
-              type="date"
-              onChange={(e) => setDate(new Date(e.target.value))}
+          <div className="flex items-center gap-3">
+            <Calendar
+              selected={date}
+              onSelect={setDate}
+              className="rounded-md border"
+              mode="single"
             />
-            <div className="">
-              <select
-                value={categoryId ?? ""}
-                onChange={(e) => setCategoryId(e.target.value)}
-              >
-                <option value="">Выберите категорию</option>
-                {categories?.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={instructorId ?? ""}
-                onChange={(e) => setInstructorId(e.target.value)}
-              >
-                <option value="">Выберите инструктора</option>
-                {instructors?.map((instructor) => (
-                  <option key={instructor.id} value={instructor.id}>
-                    {instructor.firstName}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={time ?? ""}
-                onChange={(e) => setTime(e.target.value)}
-              >
-                {reservationTimes.map((time) => (
-                  <option key={time.id} value={time.name}>
-                    {time.name}
-                  </option>
-                ))}
-              </select>
+            <div className="flex flex-col gap-4">
+              <Select onValueChange={setCategoryId}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Категория" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {categories?.map((category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+
+              <Select onValueChange={setInstructorId}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Инструктор" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {instructors?.map((instructor) => (
+                      <SelectItem key={instructor.id} value={instructor.id}>
+                        {instructor.firstName}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+
+              <Select onValueChange={setTime}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Время" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {reservationTimes.map((time) => (
+                      <SelectItem key={time.id} value={time.name}>
+                        {time.name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 

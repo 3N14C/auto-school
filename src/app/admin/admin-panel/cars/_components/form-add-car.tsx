@@ -57,6 +57,13 @@ export const FormAddCar: FC = () => {
           errors={errors.model}
           className="w-1/2"
         />
+
+        <InputValidated
+          placeholder="https://example.com"
+          {...register("img")}
+          errors={errors.model}
+          className="w-1/2"
+        />
       </div>
 
       <Button variant="solid" className="text-white mt-5" type="submit">
