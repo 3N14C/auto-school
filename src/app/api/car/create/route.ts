@@ -3,6 +3,8 @@ import { formAddCar } from "@/validators/form-add-car";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 export const POST = async (req: NextRequest) => {
   const data: z.infer<typeof formAddCar> = await req.json();
 
