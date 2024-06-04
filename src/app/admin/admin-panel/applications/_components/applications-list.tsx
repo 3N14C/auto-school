@@ -17,6 +17,7 @@ export const ApplicationsList: FC = () => {
   const { data: applications } = useQuery({
     queryKey: ["all-applications"],
     queryFn: getAllApplications,
+    refetchInterval: 2000
   });
 
   const pendingApplications = applications?.filter(

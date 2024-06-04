@@ -13,6 +13,7 @@ export const InstructorsList: FC = () => {
   const { data: instructors } = useQuery({
     queryKey: ["instructors"],
     queryFn: InstructorService.getAll,
+    refetchInterval: 2000
   });
 
   return (
