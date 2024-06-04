@@ -6,7 +6,7 @@ import { InputValidated } from "@/components/ui/input/validated-input";
 import { formUpdateInstructor } from "@/validators/form-update-instructor";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Instructor } from "@prisma/client";
-import { useMutation } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,8 @@ interface IProps {
 }
 
 export const FormModalInstructor: FC<IProps> = ({ instructor }) => {
+  const queryClient = useQueryClient()
+
   const {
     register,
     handleSubmit,
@@ -34,6 +36,7 @@ export const FormModalInstructor: FC<IProps> = ({ instructor }) => {
   const { mutateAsync: removeById, isPending: isPendingRemove } = useMutation({
     mutationFn: InstructorService.removeById,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["instructors"] });
       toast.success("Инструктор удален");
     },
   });
@@ -41,6 +44,7 @@ export const FormModalInstructor: FC<IProps> = ({ instructor }) => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: InstructorService.updateById,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["instructors"] });
       toast.success("Инструктор обновлен");
     },
   });

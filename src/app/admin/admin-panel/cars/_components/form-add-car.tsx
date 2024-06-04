@@ -26,7 +26,7 @@ export const FormAddCar: FC = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createCar,
     onSuccess: () => {
-      queryClinet.invalidateQueries({ queryKey: ["all-cars"] });
+      queryClinet.removeQueries({ queryKey: ["all-cars"] });
       toast.success("Автомобиль добавлен");
       reset();
     },

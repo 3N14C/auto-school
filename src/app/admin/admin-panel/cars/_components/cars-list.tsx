@@ -12,7 +12,6 @@ export const CarsList: FC = () => {
   const { data: cars, isLoading } = useQuery({
     queryKey: ["all-cars", open],
     queryFn: getAllCars,
-    refetchInterval: 2000
   });
 
   return (

@@ -14,7 +14,6 @@ export const Providers: FC<IProps> = ({ children }) => {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: true,
-        gcTime: 3000,
       },
     },
   });
