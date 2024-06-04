@@ -15,9 +15,9 @@ export const ApplicationsList: FC = () => {
   const [ticketId, setTicketId] = useState<string>("");
 
   const { data: applications } = useQuery({
-    queryKey: ["all-applications"],
+    queryKey: ["all-applications", open],
     queryFn: getAllApplications,
-    refetchInterval: 2000
+    refetchInterval: 5000
   });
 
   const pendingApplications = applications?.filter(

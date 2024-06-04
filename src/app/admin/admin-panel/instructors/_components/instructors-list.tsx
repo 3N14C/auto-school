@@ -11,7 +11,7 @@ export const InstructorsList: FC = () => {
   const [instructorId, setInstructorId] = useState<string>("");
 
   const { data: instructors } = useQuery({
-    queryKey: ["instructors"],
+    queryKey: ["instructors", open],
     queryFn: InstructorService.getAll,
     refetchInterval: 2000
   });
