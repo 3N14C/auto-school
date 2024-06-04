@@ -16,7 +16,8 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'no-store'
         }]
-    }]
+    }],
+    cacheMaxMemorySize: 0,
 };
 
 export default nextConfig;
