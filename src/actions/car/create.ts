@@ -1,15 +1,20 @@
 import { axiosInstance } from "@/configs/axois-config";
+import { baseUrl } from "@/configs/fetch-config";
 import { formAddCar } from "@/validators/form-add-car";
 import { z } from "zod";
 
 export const createCar = async (data: z.infer<typeof formAddCar>) => {
-  const response = await axiosInstance.post("car/create", data, {
+  const response = await fetch(`${baseUrl}/car/create`, {
+    method: "POST",
     headers: {
-      "Cache-Control": "no-cache",
-      Pragma: "no-cache",
-      Expires: "0",
+      "Content-Type": "application/json",
     },
+    next: {
+      revalidate: 0,
+    },
+    cache: "no-store",
+    body: JSON.stringify(data),
   });
 
-  return response.data;
+  return response.json();
 };
