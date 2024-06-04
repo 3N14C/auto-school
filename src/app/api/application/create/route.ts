@@ -3,6 +3,8 @@ import prisma from "@/lib/prisma";
 import { z } from "zod";
 import { schema } from "@/validators/form-event-validator";
 
+export const dynamic = "force-dynamic";
+
 export const POST = async (req: NextRequest) => {
   const data: z.infer<typeof schema> = await req.json();
 
