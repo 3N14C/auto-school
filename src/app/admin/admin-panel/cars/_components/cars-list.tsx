@@ -15,7 +15,7 @@ export const CarsList: FC = () => {
   });
 
   return (
-    <div className="grid lg:grid-cols-3 w-1/2">
+    <div className="grid lg:grid-cols-3 w-1/2 gap-3">
       {cars?.map((car) => (
         <div key={car.id} className="">
           <CarModal open={open} setOpen={setOpen} carId={carId} />

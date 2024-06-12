@@ -19,4 +19,12 @@ export const LessonService = {
 
     return response.data;
   },
+
+  remove: async ({ id }: { id: string }) => {
+    const response = await axiosInstance.delete(`lesson/remove/by-id`, {
+      params: { id },
+    });
+
+    return response.data;
+  },
 };

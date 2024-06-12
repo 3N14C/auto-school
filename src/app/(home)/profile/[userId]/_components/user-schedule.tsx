@@ -3,7 +3,7 @@
 import { UserService } from "@/actions/user/user-service";
 import { Title } from "@/components/ui/title";
 import { UserReservation } from "@/types/user-types";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { FC } from "react";
 import { UserReservationCreate } from "./user-reservation";
@@ -20,6 +20,7 @@ interface IProps {
 }
 
 export const UserSchedule: FC<IProps> = ({ userId }) => {
+  const queryClient = useQueryClient();
   const { user: currentUser } = useCurrentSession();
 
   const { data: user, isLoading } = useQuery({
@@ -31,8 +32,23 @@ export const UserSchedule: FC<IProps> = ({ userId }) => {
     mutationFn: LessonService.updateStatus,
     onSuccess: () => {
       toast.success("Выполнено");
+      queryClient.fetchQuery({
+        queryKey: ["user-reservation", "user-by-id", userId],
+      });
     },
   });
+
+  const { mutateAsync: removeLesson, isPending: isPendingRemove } = useMutation(
+    {
+      mutationFn: LessonService.remove,
+      onSuccess: () => {
+        toast.success("Урок удален");
+        queryClient.fetchQuery({
+          queryKey: ["user-reservation", userId],
+        });
+      },
+    }
+  );
 
   const handleChangeStatus = async (lessonId: string) => {
     if (!user) return;
@@ -40,6 +56,14 @@ export const UserSchedule: FC<IProps> = ({ userId }) => {
     await mutateAsync({
       userId: user?.id,
       lessonId,
+    });
+  };
+
+  const handleRemoveLesson = async (lessonId: string) => {
+    if (!user) return;
+
+    await removeLesson({
+      id: lessonId,
     });
   };
 
@@ -69,26 +93,41 @@ export const UserSchedule: FC<IProps> = ({ userId }) => {
                   Место: {lesson.place === "AUTODROME" ? "Автодром" : "Город"}
                 </p>
               </div>
-              {currentUser?.role === "ADMIN" && lesson.status === "PENDING" && (
-                <div className="">
+              <div className="flex items-center gap-3">
+                {currentUser?.role === "ADMIN" &&
+                  lesson.status === "PENDING" && (
+                    <div className="">
+                      <Button
+                        disabled={isPending}
+                        onClick={() => handleChangeStatus(lesson.id)}
+                      >
+                        {isPending ? (
+                          <Loader2 className="animate-spin" />
+                        ) : (
+                          "Выполнено"
+                        )}
+                      </Button>
+                    </div>
+                  )}
+                {lesson.status === "PENDING" && (
                   <Button
-                    disabled={isPending}
-                    onClick={() => handleChangeStatus(lesson.id)}
+                    variant={"destructive"}
+                    onClick={() => handleRemoveLesson(lesson.id)}
                   >
-                    {isPending ? (
+                    {isPendingRemove ? (
                       <Loader2 className="animate-spin" />
                     ) : (
-                      "Выполнено"
+                      "Отменить занятие"
                     )}
                   </Button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           ))}
         </div>
       </ScrollArea>
 
-      <div className="grid lg:grid-cols-2">
+      <div className="grid lg:grid-cols-2 mt-10">
         <div className="">
           <Title title="Мой инструктор" />
 
@@ -115,7 +154,7 @@ export const UserSchedule: FC<IProps> = ({ userId }) => {
             />
           </div>
         </div>
-        <div className="">
+        <div className="mt-10">
           <UserReservationCreate user={user ?? ({} as UserReservation)} />
         </div>
       </div>

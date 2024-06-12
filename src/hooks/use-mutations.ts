@@ -4,7 +4,7 @@ import { approveApplicationById } from "@/actions/application/approve";
 import { sendToEmail } from "@/actions/email-send/create";
 import { LessonService } from "@/actions/lesson/lesson-service";
 import { ReservationService } from "@/actions/reservation/reservation-service";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 interface IProps {

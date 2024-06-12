@@ -70,6 +70,7 @@ export const UserProfile: FC<IProps> = ({ userId }) => {
       <div className="flex flex-col gap-5">
         <p className="text-2xl font-bold capitalize">Ваше имя: {user?.name}</p>
         <p className="text-2xl font-bold">Ваш номер: {user?.phone}</p>
+        <p className="text-2xl font-bold">Количество часов: {user?.driveHours}</p>
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { FaqSection } from "./_components/faq-section/faq-section";
 import { InstructorsSection } from "./_components/instructors-section";
 import { MainSection } from "./_components/main-section";
 import { PriceSection } from "./_components/price-section";
-// import { PriceSection } from "./_components/price-section";
 import { ServiceSection } from "./_components/service-section";
 
 export default function Home() {

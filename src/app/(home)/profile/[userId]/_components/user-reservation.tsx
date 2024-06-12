@@ -23,7 +23,6 @@ export const UserReservationCreate: FC<IProps> = ({ user }) => {
   const currentDate = moment().format("YYYY-MM-DD");
   const selectedDate = moment(date).format("YYYY-MM-DD");
   const currentTime = moment().format("HH:mm");
-  const selectedTime = moment(selectTime, "HH:mm").format("HH:mm");
   const { createLesson, isPendingLesson } = useMutations({});
 
   const disabledButton = (time: string) => {

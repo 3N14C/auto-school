@@ -6,7 +6,7 @@ export const schema = z.object({
   name: z
     .string()
     .min(1, "Поле обязательно для заполнения")
-    .regex(/^[а-яА-Я]+$/, "Неверное имя"),
+    .regex(/^[а-яА-Я\s]+$/, "Неверное имя"),
   phoneNumber: z
-    .string()
+    .string({required_error: "Поле обязательно для заполнения"})
 });

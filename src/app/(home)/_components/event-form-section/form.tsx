@@ -62,7 +62,7 @@ export const FormEvent: FC = () => {
 
       <InputValidated
         {...register("name")}
-        placeholder="Введите ваше имя"
+        placeholder="Введите ваше ФИО"
         errors={errors.name}
       />
 
