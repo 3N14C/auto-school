@@ -89,10 +89,11 @@ export const FormSignIn: FC = () => {
         />
 
         <InputValidated
-          placeholder="Пароль"
+          placeholder="******"
           {...register("password")}
           errors={errors.password}
           className=""
+          type="password"
         />
 
         <Button

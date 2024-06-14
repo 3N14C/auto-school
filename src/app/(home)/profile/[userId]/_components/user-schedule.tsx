@@ -139,6 +139,14 @@ export const UserSchedule: FC<IProps> = ({ userId }) => {
               height={1000}
               className="w-[300px]"
             />
+            <div className="flex items-center gap-2">
+              <p className="first-letter:capitalize">
+                {user?.reservation?.instructor.firstName}
+              </p>
+              <p className="first-letter:capitalize">
+                {user?.reservation?.instructor.lastName}
+              </p>
+            </div>
           </div>
         </div>
         <div className="">
@@ -152,6 +160,14 @@ export const UserSchedule: FC<IProps> = ({ userId }) => {
               height={1000}
               className="w-[300px]"
             />
+            <div className="flex items-center gap-2">
+              <p className="first-letter:capitalize">
+                {user?.reservation?.instructor.car.brand}
+              </p>
+              <p className="first-letter:capitalize">
+                {user?.reservation?.instructor.car.model}
+              </p>
+            </div>
           </div>
         </div>
         <div className="mt-10">
