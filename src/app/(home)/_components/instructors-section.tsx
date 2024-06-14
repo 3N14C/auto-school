@@ -57,10 +57,10 @@ export const InstructorsSection: FC = () => {
                 height={1000}
                 className="lg:w-full"
               />
-              <div className="flex items-center gap-2 text-2xl">
+              {/* <div className="flex items-center gap-2 text-2xl">
                 <p className="capitalize">{firstName}</p>
                 <p>{lastName}</p>
-              </div>
+              </div> */}
             </CarouselItem>
           ))}
         </CarouselContent>
