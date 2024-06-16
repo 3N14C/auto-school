@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useCurrentSession } from "@/hooks/use-current-session";
 import { cn } from "@/lib/utils";
+import moment from "moment";
 
 interface IProps {
   userId: string;
@@ -62,14 +63,24 @@ export const UserSchedule: FC<IProps> = ({ userId }) => {
   const handleRemoveLesson = async (lessonId: string) => {
     if (!user) return;
 
+    const lesson = user.reservation?.lessons.find((l) => l.id === lessonId);
+    if (!lesson) return;
+
+    const lessonDate = moment(lesson.date).format("YYYY-MM-DD");
+    const currentDate = moment().format("YYYY-MM-DD");
+
+    if (currentDate === lessonDate)
+      return toast.error("Нельзя удалить запись на текущую дату");
+
+    if (currentDate >= lessonDate)
+      return toast.error("Нельзя удалить запись на прошедшую дату");
+
     await removeLesson({
       id: lessonId,
     });
   };
 
-  if (isLoading) {
-    return <div className="">Loading...</div>;
-  }
+  if (isLoading) return <div className="">Загрузка...</div>;
 
   return (
     <div className="">
