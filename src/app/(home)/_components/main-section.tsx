@@ -28,8 +28,7 @@ export const MainSection: FC = () => {
       <div className="flex lg:flex-row flex-col items-center justify-between lg:-mt-20 mt-5">
         <div className="flex flex-col lg:gap-10 gap-5">
           <Typography variant="text-24" className="lg:max-w-[850px]">
-            Обучаем водителей категории &quot;B&quot;, &quot;C&quot;,
-            &quot;D&quot; на{" "}
+            Обучаем водителей категории &quot;B&quot; на{" "}
             <Typography
               variant="text-24"
               tag="span"

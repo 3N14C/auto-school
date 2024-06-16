@@ -6,17 +6,17 @@ interface IImages {
 export const images: IImages[] = [
   {
     id: "1",
-    img: "/images/autodrom-car1.jpg",
+    img: "/images/polo2.jpg",
   },
 
   {
     id: "2",
-    img: "/images/autodrom-car1.jpg",
+    img: "/images/polo.jpg",
   },
 
   {
     id: "3",
-    img: "/images/autodrom-car1.jpg",
+    img: "/images/polo3.jpg",
   },
 
   {
