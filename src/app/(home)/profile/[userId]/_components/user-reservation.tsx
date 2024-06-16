@@ -43,11 +43,19 @@ export const UserReservationCreate: FC<IProps> = ({ user }) => {
   const handleCreateLesson = async () => {
     if (currentDate > selectedDate)
       return toast.error("Нельзя записаться на прошедшую дату");
+
+    if (
+      currentTime >= moment(selectTime, "HH:mm").format("HH:mm") &&
+      currentDate >= moment(date, "YYYY-MM-DD").format("YYYY-MM-DD")
+    )
+      return toast.error("На данное время нельзя сделать запись");
+
     if (
       currentDate === new Date(date!).toLocaleDateString() &&
       currentTime >= moment("19:30", "HH:mm").format("HH:mm")
     )
       return toast.error("Нельзя записаться на сегодня");
+
     if (!user.reservation) return;
 
     await createLesson({
@@ -56,6 +64,11 @@ export const UserReservationCreate: FC<IProps> = ({ user }) => {
       time: selectTime,
     });
   };
+
+  console.log(
+    currentTime >= moment(selectTime, "HH:mm").format("HH:mm") &&
+      currentDate >= moment(date, "YYYY-MM-DD").format("YYYY-MM-DD")
+  );
 
   return (
     <div className="">
