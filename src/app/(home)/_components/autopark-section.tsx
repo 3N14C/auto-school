@@ -42,13 +42,13 @@ export const AutoparkSection: FC = () => {
       >
         <CarouselContent>
           {images.map(({ id, img }) => (
-            <CarouselItem key={id} className="lg:basis-1/2">
+            <CarouselItem key={id} className="lg:basis-1/2 select-none">
               <Image
                 src={img}
                 alt=""
                 width={1000}
                 height={1000}
-                className="lg:w-full lg:h-full"
+                className="lg:w-full lg:h-[500px]"
               />
             </CarouselItem>
           ))}

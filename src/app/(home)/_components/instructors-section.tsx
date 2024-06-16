@@ -49,18 +49,14 @@ export const InstructorsSection: FC = () => {
       >
         <CarouselContent>
           {instructors?.map(({ id, img, firstName, lastName }) => (
-            <CarouselItem key={id} className="lg:basis-1/2">
+            <CarouselItem key={id} className="lg:basis-1/2 select-none">
               <Image
                 src={img ?? ""}
                 alt=""
                 width={1000}
                 height={1000}
-                className="lg:w-full"
+                className="lg:w-full lg:h-[500px]"
               />
-              {/* <div className="flex items-center gap-2 text-2xl">
-                <p className="capitalize">{firstName}</p>
-                <p>{lastName}</p>
-              </div> */}
             </CarouselItem>
           ))}
         </CarouselContent>
